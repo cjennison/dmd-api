@@ -26,6 +26,16 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.middleware.use Rack::Cors do
+    allow do
+      origins '*' # TODO RESTRICT ME
+      resource '*',
+        headers: :any,
+        expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+        methods: [:get, :post, :options, :delete, :put]
+    end
+  end
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -44,4 +54,6 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

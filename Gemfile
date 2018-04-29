@@ -23,7 +23,7 @@ gem 'puma', '~> 3.0'
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,3 +50,6 @@ group :test do
   gem 'database_cleaner'
 end
 gem 'postgresql', '1.0.0'
+gem 'apipie-rails', '0.5.8'
+
+gem 'devise_token_auth', '0.1.43'
