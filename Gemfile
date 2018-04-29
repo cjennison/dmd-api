@@ -49,3 +49,4 @@ group :test do
   gem 'faker'
   gem 'database_cleaner'
 end
+gem 'postgresql', '1.0.0'
