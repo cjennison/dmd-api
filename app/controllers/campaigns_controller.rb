@@ -1,16 +1,29 @@
 class CampaignsController < ApplicationController
 
-  api :GET, '/campaigns/:id'
+  before_action :authenticate_user!
+
+  api :GET, '/users/:user_id/campaigns'
   param :id, :number
-  description "Get Campaign by id"
   def show
-    json_response(Campaign.find(params[:id]))
+    campaigns = user.campaigns
+    json_response(campaigns)
   end
 
-  api :GET, '/campaigns'
+  api :POST, '/users/:user_id/campaigns'
   param :id, :number
-  def index
-    json_response(Campaign.all)
+  def create
+    campaign = CampaignCreator.new(User.find(params[:user_id]), campaign_params).create
+    json_response(campaign)
+  end
+
+  private
+
+  def user
+    User.find(params[:user_id])
+  end
+
+  def campaign_params
+    params.require(:campaign).permit(:name, :description)
   end
 
 end
