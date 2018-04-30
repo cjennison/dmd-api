@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :campaigns
+  has_many :characters
+  has_many :items
+  has_many :monsters  
 end
