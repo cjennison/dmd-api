@@ -4,6 +4,23 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :campaigns, only: [:show, :create]
+
+    # User Assets Paths
+    resource :characters, :controller=>:assets, only: [] do
+      get '', to: 'assets#characters_index'
+      delete ':id', to: 'assets#character_destroy'
+    end
+
+    resource :monsters, :controller=>:assets, only: [] do
+      get '', to: 'assets#monsters_index'
+      delete ':id', to: 'assets#monster_destroy'
+    end
+
+    resource :items, :controller=>:assets, only: [] do
+      get '', to: 'assets#items_index'
+      delete ':id', to: 'assets#item_destroy'
+    end
+
   end
 
   # Main Resources /:resource/:id
