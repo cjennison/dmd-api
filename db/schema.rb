@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430220413) do
+ActiveRecord::Schema.define(version: 20180501000246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180430220413) do
   create_table "segments", force: :cascade do |t|
     t.string   "name",                      null: false
     t.string   "description", limit: 65535
-    t.string   "hash",                      null: false
+    t.string   "key_url",                   null: false
     t.integer  "campaign_id"
     t.text     "log"
     t.datetime "created_at",                null: false
