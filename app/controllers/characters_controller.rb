@@ -34,7 +34,6 @@ class CharactersController < ApplicationController
   param :id, :number
   def campaign_destroy
     campaign_asset = CampaignAsset.where(campaign: campaign, campaign_assetable: Character.find(params[:id])).first
-    puts campaign_asset
     if campaign_asset.destroy
       json_response(true)
     end

@@ -30,6 +30,15 @@ class MonstersController < ApplicationController
     json_response(monster)
   end
 
+  api :DELETE, '/campaigns/:campaign_id/monsters/:id'
+  param :id, :number
+  def campaign_destroy
+    campaign_asset = CampaignAsset.where(campaign: campaign, campaign_assetable: Monster.find(params[:id])).first
+    if campaign_asset.destroy
+      json_response(true)
+    end
+  end
+
   private
 
   def campaign

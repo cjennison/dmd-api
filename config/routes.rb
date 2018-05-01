@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     delete 'characters/:id', to: 'characters#campaign_destroy'
 
     resources :items, only: [:index, :create]
+    delete 'items/:id', to: 'items#campaign_destroy'
+
     resources :monsters, only: [:index, :create]
+    delete 'monsters/:id', to: 'monsters#campaign_destroy'
+
   end
 end
