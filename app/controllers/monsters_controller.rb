@@ -11,7 +11,6 @@ class MonstersController < ApplicationController
   api :POST, '/campaigns/:campaign_id/monsters'
   param :id, :number
   def create
-    puts params
     monster = MonsterCreator.new(current_user, monster_params, campaign).create
     json_response(monster)
   end
