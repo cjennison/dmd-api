@@ -8,16 +8,19 @@ Rails.application.routes.draw do
     # User Assets Paths
     resource :characters, :controller=>:assets, only: [] do
       get '', to: 'assets#characters_index'
+      post '', to: 'assets#character_create'
       delete ':id', to: 'assets#character_destroy'
     end
 
     resource :monsters, :controller=>:assets, only: [] do
       get '', to: 'assets#monsters_index'
+      post '', to: 'assets#monster_create'
       delete ':id', to: 'assets#monster_destroy'
     end
 
     resource :items, :controller=>:assets, only: [] do
       get '', to: 'assets#items_index'
+      post '', to: 'assets#item_create'
       delete ':id', to: 'assets#item_destroy'
     end
 
