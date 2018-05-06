@@ -35,10 +35,12 @@ Rails.application.routes.draw do
   resources :monsters, only: [:show, :update]
   resources :characters, only: [:show, :update]
 
+  resources :segments, only: [:show]
+
   resources :campaigns, only: [] do
     post ':asset_type/:asset_id', to: 'campaigns#add_asset'
 
-    resources :segments, only: [:index, :show, :create, :update]
+    resources :segments, only: [:index, :create, :update]
 
     # Campaign Resource (campaign_assets) /campaigns/:campaign_id/:type
     resources :characters, only: [:index, :create]
