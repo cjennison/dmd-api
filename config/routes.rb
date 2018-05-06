@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :users do
     resource :campaigns, only: [:show, :create]
 
+    resource :assets, only: [] do
+      get :search
+    end
+
     # User Assets Paths
     resource :characters, :controller=>:assets, only: [] do
       get '', to: 'assets#characters_index'
@@ -32,6 +36,8 @@ Rails.application.routes.draw do
   resources :characters, only: [:show, :update]
 
   resources :campaigns, only: [] do
+    post ':asset_type/:asset_id', to: 'campaigns#add_asset'
+
     resources :segments, only: [:index, :show, :create, :update]
 
     # Campaign Resource (campaign_assets) /campaigns/:campaign_id/:type
@@ -43,6 +49,5 @@ Rails.application.routes.draw do
 
     resources :monsters, only: [:index, :create]
     delete 'monsters/:id', to: 'monsters#campaign_destroy'
-
   end
 end

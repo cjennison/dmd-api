@@ -16,6 +16,21 @@ class CampaignsController < ApplicationController
     json_response(campaign)
   end
 
+  api :POST, '/campaigns/:campaign_id/:asset_type/:asset_id'
+  param :id, :number
+  def add_asset
+    resource_class = params[:asset_type].classify.safe_constantize
+    resource = resource_class.find(params[:asset_id])
+
+    campaign = Campaign.find(params[:campaign_id])
+    resource.campaign_assets << CampaignAsset.new({
+      campaign: campaign,
+      campaign_assetable: resource
+    })
+
+    json_response(resource)
+  end
+
   private
 
   def user

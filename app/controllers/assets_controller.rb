@@ -64,6 +64,13 @@ class AssetsController < ApplicationController
     json_response(item.destroy)
   end
 
+  api :GET, '/users/:user_id/assets/search'
+  param :user_id, :number
+  def search
+    result = AssetSearcher.new(params, User.find(params[:user_id])).execute
+    json_response(result)
+  end
+
   private
 
   def character_params
